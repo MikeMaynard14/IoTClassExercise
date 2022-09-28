@@ -1,17 +1,38 @@
+import { useEffect, useState } from "react";
 import TempComp from "./components/TempComp";
 
 function App() {
+
+  const studentNames = [
+    "Carmie Arpin",
+    "Anchen Ayres",
+    "Anneke Barnard",
+    "Reinhardt DeBeer",
+    "Vian Du Plessis",
+    "Wiaan Duvenhage",
+    "Cameron Godwin",
+    "Justin Koster",
+    "Carlo Kuyper",
+    "Tsebo Ramonyalioa",
+    "Simon Riley",
+    "Shanre Scheepers",
+    "Leander Van Aarde",
+    "Cornel van der Vyver",
+    "Monica Venter",
+    "Marissa Wessels"
+  ];
+
+const [components, setComponents] = useState();
+
+useEffect(()=>{
+    const render = studentNames.map((item) => <TempComp key={item} name={item} />);
+    setComponents(render);
+},[]);
+
   return (
     <div className="App">
-      <TempComp key="1" name="Mike" />
-      <TempComp key="2" name="Leo Kuyper" />
-      <TempComp key="3" name="Paul" />
-      <TempComp key="4" name="Leander Aarde" />
+      {components}
 
-
-      {/* <TempComp key="2" name="Paul" />
-      <TempComp key="3" name="James" />
-      <TempComp key="4" name="Tim" /> */}
     </div>
   );
 }
