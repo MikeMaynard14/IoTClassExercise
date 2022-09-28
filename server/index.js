@@ -22,6 +22,6 @@ mongoose.connect(process.env.DB_CONNECTION, (err) =>{
     }
 })
 
-const PORT = process.env.PORT || 5001; 
+const PORT = process.env.PORT || 80; 
 
 app.listen(PORT, () => console.log(`Sever has started on port: ${PORT}`)); 

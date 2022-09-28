@@ -35,7 +35,7 @@ const TempComp = (props) => {
 
     useEffect(() => {
       const interval = setInterval(() => {
-        axios.get('http://localhost:5001/api/getTemp/' + name)
+        axios.get('http://localhost:80/api/getTemp/' + name)
         .then(res => {
         let labelArray = [];
         let dataArray = [];
