@@ -40,23 +40,19 @@ const TempComp = (props) => {
         let labelArray = [];
         let dataArray = [];
 
-        //console.log(res.data.reverse()[0].led);
+        if(res.data.reverse()[0].led === false){
+          setLedValue("OFF")
+        } else {
+          setLedValue("ON")
+        }
   
         for(var i = 0; i < res.data.length; i++){
           setTemp(res.data[i].temp + "C");
-        
-          // setLedState(res.data[i].led);
           labelArray.push(res.data[i].time.slice(11, 16));
           setLabels(labelArray);
           dataArray.push(res.data[i].temp);
           setChartData(dataArray);
         } 
-
-        if(ledState === false){
-          setLedValue("OFF");
-        } else{
-          setLedValue("ON")
-        }
 
       });
       }, 5000);
@@ -88,11 +84,11 @@ const TempComp = (props) => {
   };
 
   const data = {
-    labels,
+    labels: labels.reverse(),
     datasets: [
       {
         label: props.name + "'s Temperature",
-        data: chartdata, 
+        data: chartdata.reverse(), 
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgb(75, 192, 192)',
       }
