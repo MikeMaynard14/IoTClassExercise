@@ -116,11 +116,11 @@ const TempComp = (props) => {
   };
 
   const data = {
-    labels: labels.reverse(),
+    labels: labels,
     datasets: [
       {
         label: props.name + "'s Temperature",
-        data: chartdata.reverse(), 
+        data: chartdata, 
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgb(75, 192, 192)',
       }
