@@ -61,12 +61,14 @@ const TempComp = (props) => {
 
     const ledToggle = () => {
       let state = ledState;
-
+      
       if(state != true){
          setLedState(true)
+         console.log("Led true");
       }else{
          state = false
          setLedState(false)
+         console.log("Led false");
       }
     }
 
