@@ -68,7 +68,6 @@ router.patch ('/api/updateLed/:name', async (req, res) => {
 })
 
 router.get('/api/getLed/:name', async (req, res) =>{
-    console.log(req.params);
     const findAll = await ledState.find();
     const arrayName = findAll.filter(item => item.name == req.params.name);
 

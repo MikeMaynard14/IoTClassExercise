@@ -6,6 +6,8 @@ function App() {
       <TempComp key="1" name="Mike" />
       <TempComp key="2" name="Leo Kuyper" />
       <TempComp key="3" name="Paul" />
+      <TempComp key="4" name="Leander Aarde" />
+
 
       {/* <TempComp key="2" name="Paul" />
       <TempComp key="3" name="James" />
