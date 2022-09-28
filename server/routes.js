@@ -34,20 +34,18 @@ router.get('/api/getLastTemp/:name', async (req, res) =>{
 });
 
 router.patch ('/api/updateLed/:name', async (req, res) => {
-
     const findAll = await ledState.find();
     const arrayName = findAll.filter(item => item.name == req.params.name);
     currentId = "";
 
-    if (arrayName == false){
+    if (arrayName.length === 0){
         const newValue = new ledState({
-            name: req.body.name, 
+            name: req.params.name, 
             led: req.body.led,
         });
-    
         newValue.save()
-        .then(item => {
-            res.json(item)
+        .then(item2 => {
+            res.json(item2)
         })
         .catch(err => {
            res.status(400).json({msg:"There is an error", err}); 
@@ -55,23 +53,24 @@ router.patch ('/api/updateLed/:name', async (req, res) => {
     }
     else{
         currentId = arrayName[0]._id
+
+        const findLed = await ledState.updateOne(
+            {_id:currentId},
+            {$set: {
+                    name: req.params.name,
+                    led: req.body.led
+                }
+            }
+        );
+        res.json(findLed);
     }
 
-    const findLed = await ledState.updateOne(
-        {_id:currentId},
-        {$set: {
-                name: req.params.name,
-                led: req.body.led
-            }
-        }
-    );
-    res.json(findLed);
+    
 })
 
 router.get('/api/getLed/:name', async (req, res) =>{
     const findAll = await ledState.find();
     const arrayName = findAll.filter(item => item.name == req.params.name);
-    console.log(arrayName[0]);
     res.json(arrayName[0]);
 });
 

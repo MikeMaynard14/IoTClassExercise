@@ -39,15 +39,8 @@ const TempComp = (props) => {
         .then(res => {
         let labelArray = [];
         let dataArray = [];
-
-        if(res.data.reverse()[0].led === false){
-          setLedValue("OFF")
-        } else {
-          setLedValue("ON")
-        }
-  
+ 
         for(var i = 0; i < res.data.length; i++){
-          setTemp(res.data[i].temp + "C");
           labelArray.push(res.data[i].time.slice(11, 16));
           setLabels(labelArray);
           dataArray.push(res.data[i].temp);
@@ -55,21 +48,58 @@ const TempComp = (props) => {
         } 
 
       });
+
+      axios.get('http://localhost:80/api/getLed/' + name)
+        .then(res => {
+
+        if(res.data.led === false){
+          setLedValue("OFF")
+        } else {
+          setLedValue("ON")
+        }
+
+      });
+
+      axios.get('http://localhost:80/api/getLastTemp/' + name)
+        .then(res => {
+        
+        setTemp(res.data.temp + "C");
+        
+      });
+
+
       }, 5000);
+
+      
       return () => clearInterval(interval);
     }, []);
 
     const ledToggle = () => {
       let state = ledState;
+
+      if(state !== true){
+        setLedState(true)
+        console.log("Led true");
+     }else{
+        state = false
+        setLedState(false)
+        console.log("Led false");
+     }
+     console.log(ledState);
+      let payload = {
+        led: ledState
+    }
+      axios.patch('http://localhost:80/api/updateLed/' + name, payload)
+        .then((res)=> {
+            if(res){
+            console.log("Item Updated"); 
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
       
-      if(state != true){
-         setLedState(true)
-         console.log("Led true");
-      }else{
-         state = false
-         setLedState(false)
-         console.log("Led false");
-      }
+      
     }
 
 
