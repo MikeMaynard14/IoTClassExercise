@@ -52,8 +52,8 @@ const TempComp = (props) => {
       });
 
       axios.get('http://localhost:80/api/getLed/' + name)
-        .then(res => {
-
+        .then(res => { 
+          setLedState(!res.data.led)
         if(res.data.led === false){
           setLedValue("OFF")
           setLedImage(ledOff);
