@@ -146,7 +146,7 @@ const TempComp = (props) => {
           <div className='card-right'>
             <h1>{temp}</h1>
             <h3>C</h3>
-            <p>Latest Reading</p>
+            <p className='latest'>Latest Reading</p>
           </div>
           
           <Line options={options} data={data} />

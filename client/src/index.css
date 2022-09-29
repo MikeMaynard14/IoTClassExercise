@@ -104,3 +104,8 @@ canvas{
   margin-top: 15px !important;
   width: 230px;
 }
+
+.latest{
+  font-size: 13px;
+  font-style: italic;
+}

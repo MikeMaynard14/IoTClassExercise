@@ -4,6 +4,7 @@ import TempComp from "./components/TempComp";
 function App() {
 
   const studentNames = [
+    "Mike Maynard",
     "Carmie Arpin",
     "Anchen Ayres",
     "Anneke Barnard",
